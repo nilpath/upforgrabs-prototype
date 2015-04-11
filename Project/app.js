@@ -4,7 +4,7 @@ var windowLayer = new Layer({
 windowLayer.centerX();
 windowLayer.style.overflow = 'hidden';
 
-cameraImageLayer = new Layer({x: 0, y: 50, width: 320, height: 568, image:"/Users/christofferahrling/Google Drive/HORNSTULL HACK TEAM WASTE/Assets/lampa.png"});
+cameraImageLayer = new Layer({x: 0, y: 50, width: 320, height: 568, image:"/Users/nikek/Google Drive/HORNSTULL HACK TEAM WASTE/Assets/lampa.png"});
 cameraImageLayer.superLayer = windowLayer;
 cameraImageLayer.centerX();
 windowLayer.addSubLayer(cameraImageLayer);
@@ -46,7 +46,7 @@ headerLayer.addSubLayer(headline);
 photoButton = new Layer({
 	y: cameraImageLayer.maxY - 105,
 	height: 70, width: 70, 
-	image: "/Users/christofferahrling/Google Drive/HORNSTULL HACK TEAM WASTE/Assets/takePhotoBtn.png"
+	image: "/Users/nikek/Google Drive/HORNSTULL HACK TEAM WASTE/Assets/takePhotoBtn.png"
 });
 photoButton.centerX();
 
@@ -62,7 +62,7 @@ photoButton.on(Events.Click, function() {
 
 publishButton = new Layer({
 	y: cameraImageLayer.maxY - 105,
-	opacity: 0, height: 70, width: 70, image: "/Users/christofferahrling/Google Drive/HORNSTULL HACK TEAM WASTE/Assets/publishBtn.png"
+	opacity: 0, height: 70, width: 70, image: "/Users/nikek/Google Drive/HORNSTULL HACK TEAM WASTE/Assets/publishBtn.png"
 });
 publishButton.states.add({
 	show: {opacity: 1}
