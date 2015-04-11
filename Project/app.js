@@ -77,7 +77,7 @@ footerLayer.states.add({
 
 photoButton = new Layer({
 	y: windowLayer.maxY - 105,
-	height: 70, width: 70, 
+	height: 70, width: 70,
 	image: "images/takePhotoBtn.png"
 });
 photoButton.centerX();
