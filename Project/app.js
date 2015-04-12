@@ -256,6 +256,26 @@ var searchLocationResults = new Layer({
 });
 searchLocationView.addSubLayer(searchLocationResults);
 
+var searchLocationResultsScroll = new Layer({
+  y: 0,
+  x: 0,
+  width: searchLocationResults.width,
+  height: searchLocationResults.height,
+  backgroundColor: 'transparent'
+});
+searchLocationResultsScroll.draggable.enabled = true;
+searchLocationResultsScroll.draggable.speedX = 0;
+searchLocationResults.addSubLayer(searchLocationResultsScroll);
+
+var homeWorkItems = new Layer({
+  x: deviceWidth/2-282/2,
+  y: deviceWidth/2-282/2,
+  width: 282,
+  height: 131,
+  image: 'images/homeWorkItems.png'
+})
+searchLocationResultsScroll.addSubLayer(homeWorkItems);
+
 /////////////////////////////////////////////////
 // States
 /////////////////////////////////////////////////
@@ -309,4 +329,14 @@ locationBarEmpty.on(Events.Click, function() {
 })
 cancelSearchBtn.on(Events.Click, function() {
   searchLocationView.states.switch('closed');
+})
+
+searchLocationResultsScroll.on(Events.DragEnd, function() {
+  searchLocationResultsScroll.animate({
+    properties: {
+      x: 0,
+      y: 0
+    },
+    time: 0.5
+  })
 })
