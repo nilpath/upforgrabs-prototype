@@ -1,5 +1,5 @@
 var deviceWidth = 320;
-var deviceHeight = 568;
+var deviceHeight = 568-20;
 
 /////////////////////////////////////////////////
 // Base
@@ -44,7 +44,7 @@ windowLayer.addSubLayer(header);
 
 var cancelBtn = new Layer({
   x: 25,
-  y: headerHeight/2-17/2,
+  y: headerHeight/2-30/2,
   width: 17,
   height: 17,
   image:'images/cancelBtn.png'
@@ -72,7 +72,7 @@ header.addSubLayer(publishBtn);
 
 /// Definitions
 
-takePhotoFooterHeight = 177;
+var takePhotoFooterHeight = 177-20;
 var takePhotoFooter = new Layer({
   x: 0,
   y: windowLayer.maxY-takePhotoFooterHeight,
@@ -169,8 +169,21 @@ editPhotoFooter.states.add({
 // Behaviour
 /////////////////////////////////////////////////
 
-takePhotoBtn.on(Events.Click, function() {
+var cancelBtnOnClick = function() {
+  publishBtn.states.previous();
+  takePhotoBg.states.previous();
+  editPhotoFooter.states.previous();
+
+  cancelBtn.off(Events.Click, cancelBtnOnClick)
+  takePhotoBtn.on(Events.Click, takePhotoBtnOnClick)
+}
+
+var takePhotoBtnOnClick = function() {
   publishBtn.states.next();
   takePhotoBg.states.next();
   editPhotoFooter.states.next();
-})
+
+  takePhotoBtn.off(Events.Click, takePhotoBtnOnClick)
+  cancelBtn.on(Events.Click, cancelBtnOnClick)
+}
+takePhotoBtn.on(Events.Click, takePhotoBtnOnClick)
