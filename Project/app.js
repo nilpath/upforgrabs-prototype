@@ -44,27 +44,27 @@ windowLayer.addSubLayer(header);
 
 // we need a wrapper layer since the img is too, touch area becomse too small
 var cancelBtn = new Layer({
-  x: 15,
-  y: headerHeight/2-40/2,
-  width: 40,
-  height: 40,
+  x: 5,
+  y: headerHeight/2-60/2,
+  width: 60,
+  height: 60,
   backgroundColor: 'transparent'
 });
 header.addSubLayer(cancelBtn);
 var cancelBtnInner = new Layer({
-  x: 11,
-  y: 11,
-  width: 17,
-  height: 17,
+  x: 60/2-20/2,
+  y: 60/2-20/2,
+  width: 20,
+  height: 20,
   image:'images/cancelBtn.png'
 });
 cancelBtn.addSubLayer(cancelBtnInner);
 
 var publishBtn = new Layer({
-  x: deviceWidth-25-35,
-  y: headerHeight/2-35/2,
-  width: 35,
-  height: 35,
+  x: deviceWidth-45-10,
+  y: headerHeight/2-45/2,
+  width: 45,
+  height: 45,
   image:'images/publishBtn.png',
   opacity: 0,
 });
@@ -92,28 +92,28 @@ var takePhotoFooter = new Layer({
 windowLayer.addSubLayer(takePhotoFooter);
 
 var takePhotoBtn = new Layer({
-  y: takePhotoFooterHeight/2-80/2,
-  width: 80,
-  height: 80,
+  y: takePhotoFooterHeight/2-100/2,
+  width: 100,
+  height: 100,
   image:'images/takePhotoBtn.png'
 });
 takePhotoBtn.centerX();
 takePhotoFooter.addSubLayer(takePhotoBtn);
 
 var flashOffBtn = new Layer({
-  y: takePhotoFooterHeight/2-40/2,
-  x: 55,
-  width: 40,
-  height: 40,
+  y: takePhotoFooterHeight/2-50/2,
+  x: 40,
+  width: 50,
+  height: 50,
   image:'images/flashOffBtn.png'
 });
 takePhotoFooter.addSubLayer(flashOffBtn);
 
 var chooseExistingBtn = new Layer({
-  y: takePhotoFooterHeight/2-40/2,
-  x: deviceWidth-55-40,
-  width: 40,
-  height: 40,
+  y: takePhotoFooterHeight/2-50/2,
+  x: deviceWidth-40-50,
+  width: 50,
+  height: 50,
   image:'images/chooseExistingBtn.png'
 });
 takePhotoFooter.addSubLayer(chooseExistingBtn);
