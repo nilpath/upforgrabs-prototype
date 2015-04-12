@@ -141,10 +141,10 @@ var descriptionEmpty = new Layer({
 editPhotoFooter.addSubLayer(descriptionEmpty);
 
 var map = new Layer({
-  y: editPhotoFooterHeight-148,
+  y: editPhotoFooterHeight-135,
   x: 0,
   width: deviceWidth,
-  height: 148,
+  height: 135,
   image:'images/map.png'
 });
 editPhotoFooter.addSubLayer(map);
@@ -153,7 +153,7 @@ var locationBarEmpty = new Layer({
   y: descriptionEmpty.height,
   x: 0,
   width: deviceWidth,
-  height: 45,
+  height: 60,
   image:'images/locationBarEmpty.png'
 });
 editPhotoFooter.addSubLayer(locationBarEmpty);
