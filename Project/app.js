@@ -42,14 +42,23 @@ var header = new Layer({
 });
 windowLayer.addSubLayer(header);
 
+// we need a wrapper layer since the img is too, touch area becomse too small
 var cancelBtn = new Layer({
-  x: 25,
-  y: headerHeight/2-30/2,
+  x: 15,
+  y: headerHeight/2-40/2,
+  width: 40,
+  height: 40,
+  backgroundColor: 'transparent'
+});
+header.addSubLayer(cancelBtn);
+var cancelBtnInner = new Layer({
+  x: 11,
+  y: 11,
   width: 17,
   height: 17,
   image:'images/cancelBtn.png'
 });
-header.addSubLayer(cancelBtn);
+cancelBtn.addSubLayer(cancelBtnInner);
 
 var publishBtn = new Layer({
   x: deviceWidth-25-35,
