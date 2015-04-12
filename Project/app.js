@@ -1,6 +1,8 @@
 var deviceWidth = 320;
 var deviceHeight = 568-20;
 
+var black = '#333';
+
 /////////////////////////////////////////////////
 // Base
 /////////////////////////////////////////////////
@@ -159,6 +161,102 @@ var locationBarEmpty = new Layer({
 editPhotoFooter.addSubLayer(locationBarEmpty);
 
 /////////////////////////////////////////////////
+// Search Location
+/////////////////////////////////////////////////
+
+/// Search Input
+
+var searchLocationView = new Layer({
+  y: deviceHeight,
+  x: 0,
+  width: deviceWidth,
+  height: deviceHeight,
+  backgroundColor: 'transparent'
+});
+windowLayer.addSubLayer(searchLocationView);
+
+var searchInput = new Layer({
+  y: 0,
+  x: 0,
+  width: deviceWidth,
+  height: 55,
+  backgroundColor: black
+});
+searchLocationView.addSubLayer(searchInput);
+
+var searchIconBig = new Layer({
+  y: searchInput.height/2-17/2,
+  x: searchInput.height/2-17/2,
+  width: 17,
+  height: 17,
+  image: 'images/searchIconBig.png'
+});
+searchInput.addSubLayer(searchIconBig);
+
+var cancelSearchBtn = new Layer({
+  y: 0,
+  x: searchInput.width-91,
+  width: 91,
+  height: 55,
+  backgroundColor: 'transparent'
+});
+searchInput.addSubLayer(cancelSearchBtn);
+var cancelSearchBtnImg = new Layer({
+  y: cancelSearchBtn.height/2-26/2,
+  x: 0,
+  width: 72,
+  height: 26,
+  image: 'images/cancelSearchBtn.png'
+});
+cancelSearchBtn.addSubLayer(cancelSearchBtnImg);
+
+var clearBtn = new Layer({
+  y: 0,
+  x: searchInput.width-cancelSearchBtn.width-40,
+  width: 40,
+  height: 55,
+  backgroundColor: 'transparent',
+  opacity: 0 // initial state
+});
+searchInput.addSubLayer(clearBtn);
+var clearBtnImg = new Layer({
+  y: clearBtn.height/2-11/2,
+  x: clearBtn.width/2-11/2,
+  width: 11,
+  height: 11,
+  image: 'images/clearBtn.png'
+});
+clearBtn.addSubLayer(clearBtnImg);
+
+var searchInputText = new Layer({
+  y: 0,
+  x: 50,
+  width: searchInput.width-cancelSearchBtn.width-clearBtn.width-50,
+  height: 55,
+  backgroundColor: 'transparent'
+});
+searchInput.addSubLayer(searchInputText);
+var searchInputTextImg = new Layer({
+  y: searchInputText.height/2-14/2,
+  x: 0,
+  width: 124,
+  height: 14,
+  image: 'images/searchInputPlaceholerText.png'
+});
+searchInputText.addSubLayer(searchInputTextImg);
+
+/// Main content
+
+var searchLocationResults = new Layer({
+  y: searchInput.height,
+  x: 0,
+  width: deviceWidth,
+  height: deviceHeight-searchInput.height,
+  backgroundColor: 'white'
+});
+searchLocationView.addSubLayer(searchLocationResults);
+
+/////////////////////////////////////////////////
 // States
 /////////////////////////////////////////////////
 
@@ -171,6 +269,15 @@ takePhotoBg.states.add({
 editPhotoFooter.states.add({
   visible: {
     y: windowLayer.maxY-editPhotoFooterHeight
+  }
+})
+
+searchLocationView.states.add({
+  open: {
+    y: 0
+  },
+  closed: {
+    y: deviceHeight
   }
 })
 
@@ -196,3 +303,10 @@ var takePhotoBtnOnClick = function() {
   cancelBtn.on(Events.Click, cancelBtnOnClick)
 }
 takePhotoBtn.on(Events.Click, takePhotoBtnOnClick)
+
+locationBarEmpty.on(Events.Click, function() {
+  searchLocationView.states.switch('open');
+})
+cancelSearchBtn.on(Events.Click, function() {
+  searchLocationView.states.switch('closed');
+})
