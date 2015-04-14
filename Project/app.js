@@ -1,5 +1,5 @@
 var deviceWidth = 320;
-var deviceHeight = 568-20;
+var deviceHeight = 568-20; // minus iphone status bar
 
 var black = '#333';
 
@@ -44,7 +44,7 @@ var header = new Layer({
 });
 windowLayer.addSubLayer(header);
 
-// we need a wrapper layer since the img is too, touch area becomse too small
+// we need a wrapper layer since the img is too small, touch area becomse too small
 var cancelBtn = new Layer({
   x: 5,
   y: headerHeight/2-60/2,
@@ -83,7 +83,7 @@ header.addSubLayer(publishBtn);
 
 var dottedViewport = new Layer({
   x: 0,
-  y: header.height,
+  y: 77,
   width: deviceWidth,
   height: 320,
   image:'images/dottedViewport.png'
@@ -101,7 +101,7 @@ dottedViewport.states.add({
 
 /// Definitions
 
-var takePhotoFooterHeight = 177-20;
+var takePhotoFooterHeight = 151;
 var takePhotoFooter = new Layer({
   x: 0,
   y: windowLayer.maxY-takePhotoFooterHeight,
@@ -111,38 +111,48 @@ var takePhotoFooter = new Layer({
 });
 windowLayer.addSubLayer(takePhotoFooter);
 
+var takePhotoFooterContent = new Layer({
+  x: takePhotoFooter.width/2-213/2,
+  y: takePhotoFooter.height/2-90/2,
+  width: 213,
+  height: 90,
+  backgroundColor: 'transparent'
+});
+takePhotoFooter.addSubLayer(takePhotoFooterContent);
+takePhotoFooterContent.centerX();
+
 var takePhotoBtn = new Layer({
-  y: takePhotoFooterHeight/2-100/2,
-  width: 100,
-  height: 100,
+  y: takePhotoFooterContent.height/2-90/2,
+  width: 90,
+  height: 90,
   image:'images/takePhotoBtn.png'
 });
+takePhotoFooterContent.addSubLayer(takePhotoBtn);
 takePhotoBtn.centerX();
-takePhotoFooter.addSubLayer(takePhotoBtn);
 
 var flashOffBtn = new Layer({
-  y: takePhotoFooterHeight/2-50/2,
-  x: 40,
-  width: 50,
-  height: 50,
+  y: takePhotoFooterContent.height/2-43/2,
+  x: 0,
+  width: 43,
+  height: 43,
   image:'images/flashOffBtn.png'
 });
-takePhotoFooter.addSubLayer(flashOffBtn);
+takePhotoFooterContent.addSubLayer(flashOffBtn);
 
 var chooseExistingBtn = new Layer({
-  y: takePhotoFooterHeight/2-50/2,
-  x: deviceWidth-40-50,
-  width: 50,
-  height: 50,
+  y: takePhotoFooterContent.height/2-43/2,
+  x: takePhotoFooterContent.width-43,
+  width: 43,
+  height: 43,
   image:'images/chooseExistingBtn.png'
 });
-takePhotoFooter.addSubLayer(chooseExistingBtn);
+takePhotoFooterContent.addSubLayer(chooseExistingBtn);
 
 ////////////////////////////////////////////////
 // Edit photo
 /////////////////////////////////////////////////
 
-var editPhotoFooterHeight = 248;
+var editPhotoFooterHeight = 230;
 var editPhotoFooter = new Layer({
   y: windowLayer.maxY,
   x: 0,
@@ -155,25 +165,49 @@ var descriptionEmpty = new Layer({
   y: 0,
   x: 0,
   width: deviceWidth,
-  height: 68,
+  height: 71,
   image:'images/descriptionEmpty.png'
 });
 editPhotoFooter.addSubLayer(descriptionEmpty);
 
 var map = new Layer({
-  y: editPhotoFooterHeight-135,
+  y: editPhotoFooter.height-114,
   x: 0,
   width: deviceWidth,
-  height: 135,
-  image:'images/map.png'
+  height: 114,
+  backgroundColor: 'white'
 });
 editPhotoFooter.addSubLayer(map);
+var mapCanvas = new Layer({
+  y: map.height/2-584/2,
+  x: map.width/2-1055/2,
+  width: 1055,
+  height: 584,
+  image:'images/mapCanvas.png'
+});
+map.addSubLayer(mapCanvas);
+mapCanvas.draggable.enabled = true;
+// mapCanvas.draggable.constraints = {
+//   x: 0,
+//   y: 0,
+//   width: map.width,
+//   height: map.height
+// }
+
+var pin = new Layer({
+  x: map.width/2-39/2+14,
+  y: map.height/2-39/2-5,
+  width: 34,
+  height: 39,
+  image: 'images/pin.png'
+})
+map.addSubLayer(pin);
 
 var locationBarEmpty = new Layer({
   y: descriptionEmpty.height,
   x: 0,
   width: deviceWidth,
-  height: 60,
+  height: 57,
   image:'images/locationBarEmpty.png'
 });
 editPhotoFooter.addSubLayer(locationBarEmpty);
@@ -300,7 +334,7 @@ searchLocationResultsScroll.addSubLayer(homeWorkItems);
 
 takePhotoBg.states.add({
   editMode: {
-    y: -header.maxY
+    y: -dottedViewport.y
   }
 })
 
