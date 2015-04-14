@@ -63,10 +63,10 @@ var cancelBtnInner = new Layer({
 cancelBtn.addSubLayer(cancelBtnInner);
 
 var publishBtn = new Layer({
-  x: deviceWidth-45-10,
-  y: headerHeight/2-45/2,
-  width: 45,
-  height: 45,
+  x: deviceWidth-44-10,
+  y: headerHeight/2-44/2,
+  width: 44,
+  height: 44,
   image:'images/publishBtn.png',
   opacity: 0,
 });
@@ -76,6 +76,24 @@ publishBtn.states.add({
   }
 })
 header.addSubLayer(publishBtn);
+
+/////////////////////////////////////////////////
+// Take photo main viewport
+/////////////////////////////////////////////////
+
+var dottedViewport = new Layer({
+  x: 0,
+  y: header.height,
+  width: deviceWidth,
+  height: 320,
+  image:'images/dottedViewport.png'
+});
+takePhotoBg.addSubLayer(dottedViewport);
+dottedViewport.states.add({
+  hidden: {
+    opacity: 0
+  }
+})
 
 /////////////////////////////////////////////////
 // Take photo footer
@@ -271,7 +289,7 @@ var homeWorkItems = new Layer({
   x: deviceWidth/2-282/2,
   y: deviceWidth/2-282/2,
   width: 282,
-  height: 131,
+  height: 140,
   image: 'images/homeWorkItems.png'
 })
 searchLocationResultsScroll.addSubLayer(homeWorkItems);
@@ -309,6 +327,7 @@ var cancelBtnOnClick = function() {
   publishBtn.states.previous();
   takePhotoBg.states.previous();
   editPhotoFooter.states.previous();
+  dottedViewport.states.previous();
 
   cancelBtn.off(Events.Click, cancelBtnOnClick)
   takePhotoBtn.on(Events.Click, takePhotoBtnOnClick)
@@ -318,6 +337,7 @@ var takePhotoBtnOnClick = function() {
   publishBtn.states.next();
   takePhotoBg.states.next();
   editPhotoFooter.states.next();
+  dottedViewport.states.next();
 
   takePhotoBtn.off(Events.Click, takePhotoBtnOnClick)
   cancelBtn.on(Events.Click, cancelBtnOnClick)
