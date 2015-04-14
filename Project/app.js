@@ -89,11 +89,6 @@ var dottedViewport = new Layer({
   image:'images/dottedViewport.png'
 });
 takePhotoBg.addSubLayer(dottedViewport);
-dottedViewport.states.add({
-  hidden: {
-    opacity: 0
-  }
-})
 
 /////////////////////////////////////////////////
 // Take photo footer
@@ -353,6 +348,18 @@ searchLocationView.states.add({
   }
 })
 
+dottedViewport.states.add({
+  hidden: {
+    opacity: 0
+  }
+})
+
+takePhotoFooterContent.states.add({
+  hidden: {
+    opacity: 0
+  }
+})
+
 /////////////////////////////////////////////////
 // Behaviour
 /////////////////////////////////////////////////
@@ -362,6 +369,7 @@ var cancelBtnOnClick = function() {
   takePhotoBg.states.previous();
   editPhotoFooter.states.previous();
   dottedViewport.states.previous();
+  takePhotoFooterContent.states.previous();
 
   cancelBtn.off(Events.Click, cancelBtnOnClick)
   takePhotoBtn.on(Events.Click, takePhotoBtnOnClick)
@@ -372,6 +380,7 @@ var takePhotoBtnOnClick = function() {
   takePhotoBg.states.next();
   editPhotoFooter.states.next();
   dottedViewport.states.next();
+  takePhotoFooterContent.states.next();
 
   takePhotoBtn.off(Events.Click, takePhotoBtnOnClick)
   cancelBtn.on(Events.Click, cancelBtnOnClick)
